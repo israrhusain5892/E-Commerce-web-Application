@@ -1,0 +1,21 @@
+
+
+.admin{
+    border: 1px solid black;
+    
+    
+}
+.card-body h3{
+    opacity: 0.5;
+    text-transform:uppercase;
+}
+
+.admin:hover{
+    background-color:lightgray;
+    cursor:pointer;
+    
+}
+
+
+
+

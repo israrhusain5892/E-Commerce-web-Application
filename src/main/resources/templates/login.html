@@ -1,0 +1,158 @@
+ 
+ 
+
+ 
+ <!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- <html lang="en" xmlns:th="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+          
+      <title>Login</title>
+
+
+    <style>
+      .custom-bg{
+        background-color:#6200EA;
+      }
+
+    </style>
+
+    
+
+</head>
+  
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark  custom-bg">
+        <div class="container">
+        <a class="navbar-brand" href="#">MyCart</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Laptop</a>
+                <a class="dropdown-item" href="#">Phone</a>
+                <a class="dropdown-item" href="#">watch</a>
+              </div>
+            </li>
+          </ul>
+         
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a class="nav-link" th:href="@{/dologin}">Login</a></li>
+                
+                <li class="nav-item active"><a class="nav-link" th:href="@{/registerpage}">Register</a></li>
+            </ul>
+          
+        </div>
+    </div>
+</nav> 
+
+ <!--  login page start-->
+    <div class="container-fluid">
+   <div class="row mt-4">
+       <div class="col-md-4 offset-md-4">
+     <div class="card mt-4">
+        
+         <div class="card-header custom-bg text-white">
+            <h4>Login here</h4>
+         </div>
+          <!-- showing error message  -->
+         <div th:if="${param.error}" class="alert alert-danger">
+          Invalid Username or Password
+         </div>
+        <!-- showing logout success  -->
+
+       <div th:if="${param.logout}" class="alert alert-success">
+          You have been logout successfully!
+       </div>
+
+
+       <div class="card-body " style="height:250px;">
+        
+        
+        <div class="container">
+          <form class="form-signin" method="post" th:action="@{/dologin}">
+            <h2 class="form-signin-heading"></h2>
+            <p>
+              <label for="username" class="sr-only">Username</label>
+              <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+            </p>
+            <p>
+              <label for="password" class="sr-only">Password</label>
+              <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            </p>
+            <div class="container text-center mb-4">
+              <a href="#" th:href="@{/registerpage}">if not register click here</a>
+            </div>
+            
+            <div class="container text-center">
+              <button class="btn btn-primary " type="submit">Login</button>
+              <button class="btn btn-primary " type="reset">Reset</button>
+            </div>
+           
+          </form>
+        </div>
+      <!-- <form  th:action="@{/user}" method="post">
+             
+          <div class="form-group">
+            <label for="email">User Name</label>
+            <input type="email" name="email"class="form-control" placeholder="enter email" id="email" aria-describedby="emailHelp">
+            
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="enter password"class="form-control" id="password">
+          </div>
+          <div class="container text-center mb-4">
+            <a href="#" th:href="@{/registerpage}">if not register click here</a>
+          </div>
+         
+         
+         <div class="container text-center">
+            <button type="submit" class="btn btn-primary custom-bg border-0">Submit</button>
+            <button type="reset" class="btn btn-primary custom-bg border-0">Reset</button>
+         </div>
+          
+        </form> -->
+      </div>
+     </div>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+
+   <!-- login page end -->
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+   </body>
+
+</html>
+

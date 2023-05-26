@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>Welcome Home</title>
+        
+        <link rel="stylesheet" href="style.css">
+    <style>
+      .custom-bg{
+        background-color:#6200EA;
+      }
+
+      .list-group-item-action.active{
+        background-color: #6200EA;
+        border: none;
+      }
+
+      .card-footer .span{
+         content:"\20B9";
+      }
+
+    </style>
+</head>
+
+
+<body>
+  <!-- <h1><span th:text="${user.email}"></span></h1> -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark  custom-bg">
+        <div class="container">
+        <a class="navbar-brand" href="#">MyCart</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                  Categories
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Laptop</a>
+                  <a class="dropdown-item" href="#">Phone</a>
+                  <a class="dropdown-item" href="#">watch</a>
+                </div>
+              </li>
+            
+           
+          </ul>
+         
+            <ul class="navbar-nav ml-auto">
+              
+              <li class="nav-item active"><a class="nav-link" th:href="@{/dologin}">login</a></li>
+                
+                <li class="nav-item active"><a class="nav-link" th:href="@{/registerpage}">Sign Up</a></li>
+            </ul>
+          
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <!-- category section -->
+   <div class="row mt-3 mx-2">
+    <div class="col-md-2">
+
+      <div class="list-group mt-4">
+        <a href="#" th:href="@{/showproduct}" class="custom-bg list-group-item list-group-item-action active" aria-current="true">
+          All Products
+        </a>
+        <a href="#"  class=" list-group-item-action" th:each="category:${categories1}" 
+          th:href="@{/showproduct/{id}(id=${category.id})}"
+        >
+          <li class="list-group-item " style="color:blue;" th:text="${category.name}"></li>
+
+        </a>
+      </div>
+
+
+    </div>
+
+
+    <!-- show products -->
+
+    <div class="col-md-10" >
+
+      <!-- row -->
+         <div  class="row mt-4">
+           
+          <!-- column-12 -->
+          <div class="col-md-12">
+
+           <div class="card-columns">
+
+             <div class="card" th:each="product : ${Allproducts}">
+              <div class="container text-center">
+               <img style="max-height: 200px; max-width: 100%; width: auto;" th:src="@{${'/productImages/'+product.product_pic}}" class="card-img-top" th:alt="${product.product_pic}">
+              </div>
+               <div class="card-body" >
+                   <h5 class="card-title" th:text="${product.product_title}"></h5>
+                   <p class="card-text" th:text="${@helper.getwords(product.product_description)}"></p> 
+              </div>
+                <div class="card-footer text-center">
+                 
+                   <biutton onclick="window.open('/dologin','_blank')" class="btn custom-bg text-white">Add to cart</biutton>
+                   <span style=" margin-top: 7px; margin-left:5px; color:#6200EA; position:absolute;">&#8377</span>
+                   <button  th:text="${product.product_price}"  class="btn btn-outline-primary pl-3" ></biutton>
+
+                </div>
+                
+              </div>
+
+             </div>
+
+
+           </div>
+
+          </div>
+        
+      </div>
+    </div>
+
+   </div>
+   </div>
+
+</body>
+</html>
