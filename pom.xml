@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+           
 
 	
 	<dependencies>
@@ -24,17 +25,20 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
 		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -71,31 +75,39 @@
 			<scope>runtime</scope>
 		</dependency>
 
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
+    <!-- Jackson JSON Processor -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+
+
+    <!-- Apache HttpClient -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+    </dependency>
 
 	  <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
    <dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <optional>true</optional>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<optional>true</optional>
    </dependency>
 
-   <dependencies>
-
-               <repositories>
-					<repository>
-						<id>snapshots-repo</id>
-						<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-						<releases><enabled>false</enabled></releases>
-						<snapshots><enabled>true</enabled></snapshots>
-					</repository>
-				</repositories>
-  <dependency>
-    <groupId>com.beanstream.api</groupId>
-    <artifactId>beanstream</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </dependency>
-</dependencies>
+    <dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.13</version>
+   </dependency>         
+   
+   
 
  </dependencies>
 

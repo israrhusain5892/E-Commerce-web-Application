@@ -229,21 +229,31 @@
     let date=$("#card-expiry-error").val();
   }
 
+
+  $(document).ready(function() {
+    // Handle payment button click event
+    $('#pay-button').click(function() {
+      // Collect payment data from the user (if needed)
+      var paymentData = {
+        // Provide the necessary payment details
+        // ...
+        amount:amount,
+        number:number,
+        cvv:cvv,
+        date:date,
+    
+        info:'order_request'
+      };
+
   $.ajax(
 
     {
-        url:'https://api.na.bambora.com/v1/payments',
-        Authorization:'Passcode MzAwMjEzNDMwOjRGNzQ3NDE2MDU3MTRCRDA4NEZCMUEyNTE5MUZBODdD',
-        data:JSON.stringify(
-            {
-                amount:amount,
-                number:number,
-                cvv:cvv,
-                date:date,
-            
-            info:'order_request'}),
+        url:'/user/v1/payments',
+        // Authorization:'Passcode MzAwMjEzNDMwOjRGNzQ3NDE2MDU3MTRCRDA4NEZCMUEyNTE5MUZBODdD',
+        data:JSON.stringify(paymentData),
         contentType:'application/json',
         dataType:'json',
+        type:'POST',
         success:function(response){
            console.log(response);
         },
@@ -252,5 +262,7 @@
               alert("some thing went wrong");
         }
 
-    }
-  )
+      });
+    });
+  });
+ 

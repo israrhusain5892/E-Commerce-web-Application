@@ -61,12 +61,12 @@
             <ul class="navbar-nav ml-auto">
               
               <!-- <li class="nav-item active"><a class="nav-link" th:href="@{/dologin}">login</a></li> -->
-                <li  class="nav-item active">
+                <li  class="nav-item active" style="margin-right: 30px;">
                   <a  th:href="@{/user/showcart}" class="nav-link"  style="margin-right: 10px;">
-                    <img style="width:31px;" src="../images/cart-64.png"> :
-                     <span style="color:white;" th:text="${cartscount}"></span>
+                    <img style="width:31px;" src="/images/cart-64.png"> :
+                     <span th:text="${cartscount}"></span>
                   </a>
-                
+                  
                 </li> 
                 <li class="nav-item active"><a class="nav-link" ><span th:text="${user.userName}"></span></a></li>
                 <li class="nav-item active"><a class="nav-link" th:href="@{/logout}">logout</a></li>

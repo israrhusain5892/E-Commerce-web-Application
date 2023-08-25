@@ -24,7 +24,7 @@ import com.example.Ecommerce.Application.Service.CategoryService;
 import com.example.Ecommerce.Application.Service.RoleService;
 import com.example.Ecommerce.Application.Service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -46,40 +46,34 @@ public class MainController1 {
    @Autowired
    private ProductRepository productRepository;
 
-  //  @RequestMapping("/payments")
-  //  public void 
+ 
 
     @RequestMapping("dologin")
      public String loginpage(){
          return "login";
-         //return "redirect:/user/dashboard";
+         
      }
 
      @RequestMapping("showproduct/{id}")
      public String showproductsById(Model model,@PathVariable("id") int id) throws Exception{
-         model.addAttribute("categories1", categoryService.getAllcategories());
-         model.addAttribute("Allproducts", productRepository.findAllByCategory_id(id));
-         return "index";
+        model.addAttribute("categories1", categoryService.getAllcategories());
+        model.addAttribute("Allproducts", productRepository.findAllByCategory_id(id));
+        return "index";
+     }
+
+     @RequestMapping("")
+     public String showCategoryandproducts(Model model) throws Exception{
+        model.addAttribute("categories1", categoryService.getAllcategories());
+        model.addAttribute("Allproducts", productRepository.findAll());
+        return "index";
      }
     
      @RequestMapping("registerpage")
-    public String registerPage(){
+     public String registerPage(){
         return "register";
 
      }
   
-    
-     @RequestMapping("showproduct")
-     public String showCategoryandproducts(Model model) throws Exception{
-            model.addAttribute("categories1", categoryService.getAllcategories());
-           
-            model.addAttribute("Allproducts", productRepository.findAll());
-            return "index";
-     }
-    // @RequestMapping("showuser")
-    // public String showproductbyUser(){
-    //     return "user_home";
-    // }
 
      @PostMapping("register")
      public String register(@ModelAttribute("user") User user,HttpSession session){
@@ -88,7 +82,6 @@ public class MainController1 {
           String password=user.getPassword();
     
            user.setPassword(encoder.encode(password));
-          //  System.out.println(encoder.encode("Admin@123456"));
            List<Roles> roles=user.getRoles();
 
            if(roles==null){
@@ -99,16 +92,13 @@ public class MainController1 {
            userService.registerUser(user);
             session.setAttribute("message", new Sendmessage("You have been registered successfully","success"));
           }
+          
           catch(Exception e){
-              // e.printStackTrace();
+              
                session.setAttribute("message", new Sendmessage("Not registered some thing went wrong try again!","danger"));
           }
         
-          //  request.login(user.getEmail(),password);
            return "redirect:/registerpage";
 
    }
-
-
-   
 }
