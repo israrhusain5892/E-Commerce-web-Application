@@ -110,9 +110,9 @@ public class Usercontroller{
                  model.addAttribute("user",user);
                 
                  model.addAttribute("cartscount", cartRepository.findAllByUser_id(user.getId()).size());
-                 if(user.getEmail().equals(userName)){
-                          return "user_home";
-                 }
+                 // if(user.getEmail().equals(userName)){
+                 //          return "user_home";
+                 // }
                  else if(user.getEmail().equals("admin123@gmail.com")){
                        return "redirect:/admin/dashboard";
                  }
