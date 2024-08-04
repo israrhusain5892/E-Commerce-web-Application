@@ -1,8 +1,9 @@
 package com.example.Ecommerce.Application.Models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -15,12 +16,14 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
 @Entity
-@Table
 public class User {
 
     @Id
@@ -37,25 +40,25 @@ public class User {
     //  private List<Cart> carts;
 
 
-      @ManyToMany(cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
-      @JoinTable(
-          name="user_role",
-          joinColumns={@JoinColumn (name="USER_ID",referencedColumnName = "ID")},
-          inverseJoinColumns={@JoinColumn (name="ROLE_ID",referencedColumnName="ID")}
+    @ManyToMany(cascade = {CascadeType.ALL,CascadeType.REMOVE},fetch = FetchType.EAGER )
+    @JoinTable(name="user_role",
+             joinColumns = {@JoinColumn(name="USER",referencedColumnName = "ID")},
+            inverseJoinColumns ={@JoinColumn(name="ROLE",referencedColumnName = "role_id")})
+      private Set<Roles> roles=new HashSet<>();
 
-      )
-      private List<Roles> roles;
-     public User(){
+      public User(){
         
-     }
-
-//      constructor
-      public User(User user){
-          this.userName=user.getUserName();
-          this.email=user.getEmail();
-          this.password=user.getPassword();
-          this.phone=user.getPhone();
-          this.address=user.getAddress();
-
       }
+ 
+ //      constructor
+       public User(User user){
+           this.userName=user.getUserName();
+           this.email=user.getEmail();
+           this.password=user.getPassword();
+           this.phone=user.getPhone();
+           this.address=user.getAddress();
+           this.roles=user.getRoles();
+ 
+       }
+    
 }

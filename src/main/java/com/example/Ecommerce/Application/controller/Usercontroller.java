@@ -102,8 +102,9 @@ public class Usercontroller{
           @RequestMapping("/dashboard")
            public String viewUserpage(Model model,Principal principal)throws Exception{
                 userName=principal.getName();
+                System.out.println(userName);
                 user=userRepo.findByEmail(userName);
-                //model.addAttribute("size",list.size());
+                // model.addAttribute("size",list.size());
                model.addAttribute("categories1", categoryService.getAllcategories());
            
                model.addAttribute("Allproducts", productRepository.findAll());
@@ -111,7 +112,7 @@ public class Usercontroller{
                 
                  model.addAttribute("cartscount", cartRepository.findAllByUser_id(user.getId()).size());
                 
-                 if(user.getEmail().equals("admin123@gmail.com")){
+                 if(user.getEmail().equals("admin@gmail.com")){
                        return "redirect:/admin/dashboard";
                  }
 

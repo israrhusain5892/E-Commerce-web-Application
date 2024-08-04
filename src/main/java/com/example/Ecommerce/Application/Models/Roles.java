@@ -1,6 +1,8 @@
 package com.example.Ecommerce.Application.Models;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 // import org.hibernate.annotations.DiscriminatorFormula;
 
@@ -15,15 +17,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table
 public class Roles {
       @Id
       @GeneratedValue(strategy=GenerationType.IDENTITY)
-      private int id;
+      private int role_id;
       private String name;
 
-
-      @ManyToMany(mappedBy="roles")
-      private List<User> users;
-
+   @ManyToMany(mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
 }

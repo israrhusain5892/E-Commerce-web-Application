@@ -31,16 +31,17 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         return http.authorizeHttpRequests()
+          .requestMatchers("/**","/registerpage","/register","/showproduct","/addcart/{id}").permitAll()
           .requestMatchers("/admin/**").hasRole("ADMIN")
           .requestMatchers("/user/**").hasRole("USER")
-          .requestMatchers("/**","/registerpage","/register","/showproduct","/addcart/{id}").permitAll()
+          .anyRequest()
+          .authenticated()
           .and()
           .formLogin()
           .loginPage("/dologin")
           .loginProcessingUrl("/dologin")
           .defaultSuccessUrl("/user/dashboard")
           .failureUrl("/login-fail")
-          //.permitAll()
           .and().csrf().disable().build();
          
 

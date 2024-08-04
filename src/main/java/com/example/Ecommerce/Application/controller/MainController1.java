@@ -2,7 +2,9 @@ package com.example.Ecommerce.Application.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -82,11 +84,11 @@ public class MainController1 {
           String password=user.getPassword();
     
            user.setPassword(encoder.encode(password));
-           List<Roles> roles=user.getRoles();
-
-           if(roles==null){
-             roles=new ArrayList<>();
-           }
+           Set<Roles> roles=user.getRoles();
+            if(roles==null){
+            roles=new HashSet<>();
+          }
+           
            roles.add(rolService.getrolebyid(2));
            user.setRoles(roles);
            userService.registerUser(user);
